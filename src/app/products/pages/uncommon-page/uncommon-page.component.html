@@ -1,1 +1,78 @@
-<p>uncommon-page works!</p>
+<p-fieldset legend="Pipes no tan comunes" class="p-1" [toggleable]="true">
+  <p>Pipes incluidos en Angular - Usualmente en el Common Module</p>
+</p-fieldset>
+
+<!-- i18nSelectPipe -->
+
+<div class="grid">
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
+      Saludos {{ name }}, es un placer
+      {{ gender | i18nSelect : invitationMap }} a nuestro evento
+      <p-button (click)="changeClient()" label="Cambiar persona"> </p-button>
+    </p-fieldset>
+  </div>
+
+  <!-- i18nPluralPipe -->
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
+      <p>
+        {{ clients.length | i18nPlural : colaMap }}
+      </p>
+      <p-button label="Siguiente cliente" (click)="restarCliente()"></p-button>
+    </p-fieldset>
+  </div>
+
+  <!-- i18nSlicePipe -->
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Slice Pipe" [toggleable]="true">
+      <b>Original</b>
+      <pre>{{ clients }}</pre>
+      <b>slice: 0 : 2</b>
+      <pre>{{ clients | slice : 0 : 2 }}</pre>
+      <b>slice: 0 : -2</b>
+      <pre>{{ clients | slice : 0 : -2 }}</pre>
+    </p-fieldset>
+  </div>
+
+  <!-- JSONPipe -->
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="JSON Pipe" [toggleable]="true"
+      >{{ person | json }}
+    </p-fieldset>
+  </div>
+
+  <!-- KeyValue Pipe -->
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+      <ul>
+        <li *ngFor="let item of person | keyvalue">
+          <b>{{ item.key | titlecase }}: {{ item.value }}</b>
+        </li>
+      </ul>
+    </p-fieldset>
+  </div>
+
+  <!-- Async Pipe -->
+
+  <div class="col-12 md:col-6">
+    <p-fieldset legend="Async Pipe" [toggleable]="true">
+      <pre *ngIf="!(myObservableTimer | async)">
+        Resolviendo observable
+      </pre>
+      <pre>
+      {{ myObservableTimer | async }}
+      </pre>
+      <pre *ngIf="!(promiseValue | async)">
+        Resolviendo promesa
+      </pre>
+      <pre>
+      {{ promiseValue | async }}
+      </pre>
+    </p-fieldset>
+  </div>
+</div>
